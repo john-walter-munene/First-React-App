@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Accordion - Vanilla JS</title>
+    <style>
+        .panel { margin-bottom: 1em; }
+        button { margin-top: 0.5em; }
+    </style>
+</head>
+<body>
+    <h2>Almaty, Kazakhstan</h2>
+
+    <section class="panel" data-index="0">
+        <h3>About</h3>
+        <p class="content">With a population of about 2 million, Almaty is Kazakhstan's largest city. From 1929 to 1997, it was its capital city.</p>
+    </section>
+
+    <section class="panel" data-index="1">
+        <h3>Etymology</h3>
+        <button class="show-button">Show</button>
+        <p class="content" style="display: none;">
+            The name comes from <span lang="kk-KZ">алма</span>, the Kazakh word for "apple"
+            and is often translated as "full of apples". In fact, the region
+            surrounding Almaty is thought to be the ancestral home of the apple, and the
+            wild <i lang="la">Malus sieversii</i> is considered a likely candidate for the ancestor
+            of the modern domestic apple.
+        </p>
+    </section>
+
+    <script>
+        const panels = document.querySelectorAll('.panel');
+        let activeIndex = 0;
+
+        function updatePanels() {
+            panels.forEach(panel => {
+                const index = parseInt(panel.dataset.index, 10);
+                const content = panel.querySelector('.content');
+                const button = panel.querySelector('.show-button');
+
+                if (index === activeIndex) {
+                    if (button) button.remove();
+                    content.style.display = 'block';
+                } else {
+                    if (!panel.querySelector('.show-button')) {
+                        const showBtn = document.createElement('button');
+                        showBtn.className = 'show-button';
+                        showBtn.textContent = 'Show';
+                        showBtn.addEventListener('click', () => {
+                            activeIndex = index;
+                            updatePanels();
+                        });
+                        panel.insertBefore(showBtn, content);
+                    }
+                    content.style.display = 'none';
+                }
+            });
+        }
+
+        updatePanels();
+    </script>
+</body>
+</html>
