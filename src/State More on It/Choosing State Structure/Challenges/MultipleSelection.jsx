@@ -61,7 +61,7 @@ function BestMailClient() {
 
 export { BestMailClient };
 
-// Above dode works. But foe large arrays, the filter method is an expensive operation
+// Above dode works. But for large arrays, the filter method is an expensive operation
 // The filter method is called for each item replacement in the state variable
 // Alt soln: use a set or map for it has the has() method
 function SuperBestMailClient() {

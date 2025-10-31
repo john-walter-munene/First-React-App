@@ -3,8 +3,7 @@ import { useState } from "react";
 
 // How to structure state.
 function Person() {
-    const [person, setPerson] = useState({ 
-        name: "John", age: 24, });
+    const [person, setPerson] = useState({ name: "John", age: 24, });
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
 

@@ -1,3 +1,5 @@
+import { Fragment } from "react";
+
 // List with a separator 
 
 const poem = {
@@ -46,10 +48,10 @@ function UpdatedPoemTwo() {
 
   for (let counter = 0; counter < iterableLines.length; counter++) {
     updatedLines.push(
-      <React.Fragment key={counter}>
+      <Fragment key={counter}>
         <p>{iterableLines[counter]}</p>
         {counter < iterableLines.length - 1 && <hr />}
-      </React.Fragment>
+      </Fragment>
     );
   }
 
