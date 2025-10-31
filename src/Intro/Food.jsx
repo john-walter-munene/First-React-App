@@ -5,7 +5,7 @@ function FavoriteFoodOne() {
     return <div className='food'>
                 <h2>Chicken one</h2>
                 <p>This is my first favorite meal</p>
-                <img src="../public/Chicken one.avif" alt="Roasted chicken" />
+                <img src={ChickenOne} alt="Roasted chicken" />
             </div>
 }
 
@@ -13,7 +13,7 @@ function FavoriteFoodTwo() {
     return  <div className='food'>
                 <h2>Chicken two</h2>
                 <p>This is my second favorite meal</p>
-                <img src="../public/Chicken two.avif" alt="Fried chicken" />
+                <img src={ChickenTwo} alt="Fried chicken" />
             </div>
 }
 
