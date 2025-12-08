@@ -4,30 +4,35 @@ class ClassInput extends Component {
     constructor(props) {
         super(props);
         // Component specific changing data (states).
-        this.state = { todos: ['Just some demo tasks', 'As an example'], inputVal: '', indexOfArticleOnEdit: null, };
+        this.state = { todos: ['Just some demo tasks', 'As an example'], inputVal: '', indexOfTodoOnEdit: null, };
 
+        // Reconciling the context of this in class methods.
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
-        this.handleUpdatesForArticleOnEdit = this.handleUpdatesForArticleOnEdit.bind(this);
+        this.handleUpdatesForTodOnEdit = this.handleUpdatesForTodOnEdit.bind(this);
     }
 
-    handleInputChange(e) {
-        this.setState({ inputVal: e.target.value });
+    // Update form to collect next todo item.
+    handleInputChange(event) {
+        this.setState({ inputVal: event.target.value });
     }
 
-    handleSubmit(e) {
-        e.preventDefault();
+    // Save a todo item in the list.
+    handleSubmit(event) {
+        event.preventDefault();
         this.setState(state => ({ todos: state.todos.concat(state.inputVal), inputVal: '', }));
     }
 
+    // Delete a todo item by index (workable for now as there's no unique IDs in this app).
     handleDelete(index) {
         const updatedCopyOfTodos = this.state.todos.filter((_, i) => i !== index);
         this.setState({ todos: updatedCopyOfTodos });
     }
 
-    handleUpdatesForArticleOnEdit(index) {
-        this.setState({ indexOfArticleOnEdit: index });
+    // Track the to do itme to be edited.
+    handleUpdatesForTodOnEdit(index) {
+        this.setState({ indexOfTodoOnEdit: index });
     }
 
     render() {
@@ -35,13 +40,12 @@ class ClassInput extends Component {
 
         return (
             <section>
-                <h3>{this.props.name}</h3>
+                <h3>{this.props.name}'s Todo list</h3>
                 <Count todoCount={this.state.todos.length} />
 
                 <form onSubmit={this.handleSubmit}>
                     <label htmlFor="task-entry">Enter a task: </label>
-                    <input type="text" name="task-entry" value={this.state.inputVal} 
-                        onChange={this.handleInputChange} />
+                    <input type="text" name="task-entry" value={this.state.inputVal} onChange={this.handleInputChange} />
                     <button type="submit">Submit</button>
                 </form>
 
@@ -49,10 +53,10 @@ class ClassInput extends Component {
                 <ul>
                     {this.state.todos.map((todo, index) => (
                         <li style={{ marginBottom: '10px' }} key={index}>
-                            {index !== this.state.indexOfArticleOnEdit ? todo : ''}
+                            {index !== this.state.indexOfTodoOnEdit ? todo : ''}
                             <button style={buttonStyles} onClick={() => this.handleDelete(index)}>Delete</button>
-                            <EditButton state={this.state} onStateChange={updater => this.setState(updater)}
-                                index={index} onArticleOnEditChange={this.handleUpdatesForArticleOnEdit} style={buttonStyles} />
+                            <EditButton mode={index === this.state.indexOfTodoOnEdit} state={this.state} index={index} style={buttonStyles}
+                                onStateChange={updater => this.setState(updater)} onTodoOnEditChange={this.handleUpdatesForTodOnEdit}  />
                         </li>
                     ))}
                 </ul>
@@ -64,33 +68,34 @@ class ClassInput extends Component {
 class EditButton extends Component {
     constructor(props) {
         super(props);
-        this.state = { mode: false };
+        // Internal child state for determining component mode: view/edit
 
+        // Reconciling the context of this in class methods.
         this.handleToggle = this.handleToggle.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
     }
 
+    // Switch between view and edit modes. 
+    // Update parent on a to in edit to not display it twice.
     handleToggle() {
-    const { mode } = this.state;
-    this.props.onArticleOnEditChange(mode ? null : this.props.index);
-    this.setState({ mode: !mode });
-}
+        const { mode } = this.props;
+        this.props.onTodoOnEditChange(mode ? null : this.props.index);
+    }
 
+    // Edit a to item.
+    handleEdit(event) {
+        const newValue = event.target.value;
+        const itemIndex = this.props.index;
 
-   handleEdit(event) {
-    const newValue = event.target.value;
-    const itemIndex = this.props.index;
-
-    this.props.onStateChange(prevState => {
-        const copyOfTodoItems = [...prevState.todos];
-        copyOfTodoItems[itemIndex] = newValue;
-        return { ...prevState, todos: copyOfTodoItems };
-    });
-}
+        this.props.onStateChange(prevState => {
+            const copyOfTodoItems = [...prevState.todos];
+            copyOfTodoItems[itemIndex] = newValue;
+            return { ...prevState, todos: copyOfTodoItems };
+        });
+    }
 
     render() {
-        const { mode } = this.state;
-        const { state, index, style } = this.props;
+        const { mode, state, index, style } = this.props;
         const currentValue = state.todos[index];
 
         return (
@@ -112,6 +117,8 @@ class Count extends Component {
         return  (<h3>{todoCount} Items in your todo list</h3>);
     }
 }
+
+export { ClassInput };
 
 class ClassInputWithArrowFunctions extends Component {
     state = {
@@ -163,4 +170,4 @@ class ClassInputWithArrowFunctions extends Component {
     }
 }
 
-export { ClassInput, ClassInputWithArrowFunctions };
+export { ClassInputWithArrowFunctions };

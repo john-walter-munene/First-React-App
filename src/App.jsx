@@ -1,8 +1,8 @@
-import { ClassInput } from './Class Based Component/ClassComponentsExercise';
 import './App.css'
+import { ClassInputFinale } from './Class Based Component/RefactoredExercise';
 
 function App() {
-  return (< ClassInput />);
+  return (< ClassInputFinale name="John Walter" />);
 }
 
 export default App
