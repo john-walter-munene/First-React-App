@@ -1,8 +1,10 @@
 import './App.css'
-import { ClassInputFinale } from './Class Based Component/RefactoredExercise';
+import { ClassInput } from './Class Based Component/ClassComponentsExercise';
 
-function App() {
-  return (< ClassInputFinale name="John Walter" />);
-}
+// function App() {
+//   return (< ClassInput name="John Walter" />);
+// }
+
+const App = () => <h1>Our First Test</h1>;
 
 export default App
