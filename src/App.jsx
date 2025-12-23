@@ -1,10 +1,6 @@
 import './App.css'
-import { ClassInput } from './Class Based Component/ClassComponentsExercise';
+import { TypeCheckedApplication } from './Type Checking With ProtoTypes/TypeChecks';
 
-// function App() {
-//   return (< ClassInput name="John Walter" />);
-// }
+const App = () => <TypeCheckedApplication />;
 
-const App = () => <h1>Our First Test</h1>;
-
-export default App
+export default App;
