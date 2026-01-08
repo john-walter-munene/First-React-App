@@ -1,14 +1,22 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router';
-import { routes } from './routes';
+// import { createBrowserRouter, RouterProvider } from 'react-router';
+// import { routes } from './routes';
 
-import './App.css';
+// import './App.css';
 
-const router = createBrowserRouter(routes);
+// const router = createBrowserRouter(routes);
+
+// createRoot(document.getElementById('root')).render(
+//   <StrictMode>
+//     <RouterProvider router={router} />
+//   </StrictMode>,
+// );
+
+import { Image } from "./Fetching Data in React/FetchInReact";
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
-  </StrictMode>,
+    <Image />
+  </StrictMode>
 );
