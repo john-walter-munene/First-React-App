@@ -13,10 +13,14 @@ import { createRoot } from 'react-dom/client';
 //   </StrictMode>,
 // );
 
-import { Image } from "./Fetching Data in React/FetchInReact";
+import { Button, ButtonTwo } from './Styling React Applications/Button';
+import { App } from './Styling React Applications/styledComponents';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Image />
+    <Button />
+    <ButtonTwo label='Primary'/>
+    <ButtonTwo type='secondary' label='Secondary' />
+    <App />
   </StrictMode>
 );
