@@ -10,7 +10,7 @@ function TechnicalWriter() {
 
             <button><Link to="/">Home</Link></button>
         </div>
-    )
+    );
 }
 
 export { TechnicalWriter };
