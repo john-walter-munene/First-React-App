@@ -1,6 +1,5 @@
 import { Form, useLoaderData } from "react-router";
 
-
 function EditContact() {
   const { contact } = useLoaderData();
 
