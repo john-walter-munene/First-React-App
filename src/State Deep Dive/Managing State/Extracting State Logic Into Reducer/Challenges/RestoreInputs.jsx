@@ -9,17 +9,8 @@ export default function Messenger() {
   const contact = contacts.find((c) => c.id === state.selectedId);
   return (
     <div>
-      <ContactList
-        contacts={contacts}
-        selectedId={state.selectedId}
-        dispatch={dispatch}
-      />
-      <Chat
-        key={contact.id}
-        message={message}
-        contact={contact}
-        dispatch={dispatch}
-      />
+      <ContactList contacts={contacts} selectedId={state.selectedId} dispatch={dispatch}/>
+      <Chat key={contact.id} message={message} contact={contact} dispatch={dispatch}/>
     </div>
   );
 }
