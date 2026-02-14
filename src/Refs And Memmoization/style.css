@@ -1,0 +1,19 @@
+.box {
+  height: 120px;
+  width: 120px;
+  background-color: ghostwhite;
+}
+ 
+.is-animating {
+  animation: inflate 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+ 
+@keyframes inflate {
+  from {
+    transform: scale(0.9);
+  }
+  to {
+    transform: scale(1.07);
+  }
+}
